@@ -77,8 +77,8 @@ function Navbar() {
                   </div>
 
                   {/* Mobile Menu Items */}
-                  <nav className="flex-1 pt-6">
-                    <Menu className="text-[#626262] flex-col font-medium space-y-2">
+                  <nav className=" flex pt-6">
+                    <Menu className="ml-4 text-[#626262] flex-col font-medium space-y-2">
                       {navItems.map((item) => (
                         <NavItem key={item.key} item={item} isMobile={true} />
                       ))}
@@ -86,11 +86,11 @@ function Navbar() {
                   </nav>
 
                   {/* Mobile Login Button */}
-                  <div className="pt-6 border-t border-gray-200">
+                  <div className="pt-6 border-t transform translate-[20%] border-gray-200">
                     <Link to={"/login"} onClick={() => setIsOpen(false)}>
                       <Button
                         variant={"outline"}
-                        className="w-full rounded-md cursor-pointer py-3"
+                        className="w-1/2 rounded-md cursor-pointer py-3"
                       >
                         Login
                       </Button>
