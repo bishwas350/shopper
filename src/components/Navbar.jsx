@@ -1,99 +1,142 @@
-import { CarTaxiFront, ShoppingCart } from "lucide-react";
+import { ShoppingCart, Menu as MenuIcon, X } from "lucide-react";
 import logo from "../assets/logo.png";
 import Container from "./Container";
 import Flex from "./Flex";
 import Menu from "./Menu";
 import { Button } from "./ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
   const [menu, setMenu] = useState("shop");
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navItems = [
+    { name: "Shop", path: "/", key: "shop" },
+    { name: "Mens", path: "/men", key: "men" },
+    { name: "Womens", path: "/women", key: "women" },
+    { name: "Kids", path: "/kids", key: "kids" },
+  ];
+
+  const NavItem = ({ item, isMobile = false }) => (
+    <li
+      onClick={() => {
+        setMenu(item.key);
+        if (isMobile) setIsOpen(false);
+      }}
+      className={`hover:text-black cursor-pointer ${isMobile ? 'py-4 border-b border-gray-200 last:border-b-0' : ''}`}
+    >
+      <Link to={item.path} className={isMobile ? 'block text-lg' : ''}>
+        {item.name}
+      </Link>
+      {menu === item.key && (
+        <hr className="left-0 -bottom-1 w-full h-[2px] bg-red-500 transition-all duration-500" />
+      )}
+    </li>
+  );
+
   return (
-    <div className="navbar p-[16px] shadow-[0_1px_3px_-2px_black] ">
+    <div className="navbar p-4 shadow-[0_1px_3px_-2px_black] sticky top-0 bg-white z-50">
       <Container>
-        <Flex className={"items-center justify-center gap-6"}>
-          <div className="nav-logo flex items-center gap-2.5 justify-center">
-            <img src={logo} alt="" />
-            <p className="text-[#171717] font-semibold text-3xl">BISWAS</p>
+        {/* Mobile Layout */}
+        <div className="flex md:hidden items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="nav-logo flex items-center gap-2.5">
+            <img src={logo} alt="Logo" className="h-8" />
+            <p className="text-[#171717] font-semibold text-xl sm:text-2xl">BISWAS</p>
+          </Link>
+
+          {/* Mobile Cart and Menu */}
+          <div className="flex items-center gap-3">
+            {/* Cart */}
+            <Link to={'/cart'}>
+              <button className="cursor-pointer relative p-2">
+                <ShoppingCart size={20} />
+                <span className="nav-cart-count absolute -top-1 -right-1 bg-[#121212] text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  0
+                </span>
+              </button>
+            </Link>
+
+            {/* Mobile Menu Sheet */}
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="sm" className="p-2">
+                  <MenuIcon size={20} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-80">
+                <div className="flex flex-col h-full">
+                  {/* Mobile Menu Header */}
+                  <div className="flex items-center justify-between pb-6 border-b border-gray-200">
+                    <div className="flex items-center gap-2.5">
+                      <img src={logo} alt="Logo" className="h-6" />
+                      <p className="text-[#171717] font-semibold text-xl">BISWAS</p>
+                    </div>
+                  </div>
+
+                  {/* Mobile Menu Items */}
+                  <nav className="flex-1 pt-6">
+                    <Menu className="text-[#626262] flex-col font-medium space-y-2">
+                      {navItems.map((item) => (
+                        <NavItem key={item.key} item={item} isMobile={true} />
+                      ))}
+                    </Menu>
+                  </nav>
+
+                  {/* Mobile Login Button */}
+                  <div className="pt-6 border-t border-gray-200">
+                    <Link to={"/login"} onClick={() => setIsOpen(false)}>
+                      <Button
+                        variant={"outline"}
+                        className="w-full rounded-md cursor-pointer py-3"
+                      >
+                        Login
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <Flex className="hidden md:flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="nav-logo flex items-center gap-2.5">
+            <img src={logo} alt="Logo" className="h-8" />
+            <p className="text-[#171717] font-semibold text-2xl lg:text-3xl">BISWAS</p>
+          </Link>
+
+          {/* Desktop Menu */}
           <div className="nav-menu">
-            <Menu className={"text-xl text-[#626262] font-medium  "}>
-              <li
-                onClick={() => {
-                  setMenu("shop");
-                }}
-                className="hover:text-black  cursor-pointer"
-              >
-                <Link to={"/"}>Shop</Link>
-                {menu === "shop" ? (
-                  <hr className="left-0 -bottom-1 w-full h-[3px] bg-red-500 transition-all duration-500 group-hover:w-full" />
-                ) : (
-                  <></>
-                )}
-              </li>
-              <li
-                onClick={() => {
-                  setMenu("men");
-                }}
-                className="hover:text-black  cursor-pointer"
-              >
-                <Link to={"/men"}>Mens</Link>
-                {menu === "men" ? (
-                  <hr className="left-0 -bottom-1 w-full h-[3px] bg-red-500 transition-all duration-500 group-hover:w-full" />
-                ) : (
-                  <></>
-                )}
-              </li>
-              <li
-                onClick={() => {
-                  setMenu("women");
-                }}
-                className="hover:text-black  cursor-pointer"
-              >
-                <Link to={"/women"}>Womens</Link>
-                {menu === "women" ? (
-                  <hr className="left-0 -bottom-1 w-full h-[3px] bg-red-500 transition-all duration-500 group-hover:w-full" />
-                ) : (
-                  <></>
-                )}
-              </li>
-              <li
-                onClick={() => {
-                  setMenu("kids");
-                }}
-                className="hover:text-black  cursor-pointer"
-              >
-                <Link to={"/kids"}>Kids</Link>
-                {menu === "kids" ? (
-                  <hr className="left-0 -bottom-1 w-full h-[3px] bg-red-500 transition-all duration-500 group-hover:w-full" />
-                ) : (
-                  <></>
-                )}
-              </li>
+            <Menu className="text-lg lg:text-xl text-[#626262] font-medium">
+              {navItems.map((item) => (
+                <NavItem key={item.key} item={item} />
+              ))}
             </Menu>
           </div>
-          <div className="nav-login-cart gap-4 flex items-center justify-center">
+
+          {/* Desktop Login and Cart */}
+          <div className="nav-login-cart gap-4 flex items-center">
             <Link to={"/login"}>
               <Button
                 variant={"outline"}
-                className={
-                  "rounded-md cursor-pointer px-9 py-4 active:bg-[#626262]"
-                }
+                className="rounded-md cursor-pointer px-6 lg:px-9 py-3 lg:py-4 active:bg-[#626262]"
               >
-                login
+                Login
               </Button>
             </Link>
-                  <Link to={'/cart'}>
-                  <button className="cursor-pointer relative">
-              <ShoppingCart />
-
-              <span className="nav-cart-count absolute -top-2 -right-2 bg-[#121212] text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                0
-              </span>
-            </button>
-                  </Link>
-            
+            <Link to={'/cart'}>
+              <button className="cursor-pointer relative p-2">
+                <ShoppingCart size={24} />
+                <span className="nav-cart-count absolute -top-2 -right-2 bg-[#121212] text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  0
+                </span>
+              </button>
+            </Link>
           </div>
         </Flex>
       </Container>
