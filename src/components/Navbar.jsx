@@ -77,8 +77,8 @@ function Navbar() {
                   </div>
 
                   {/* Mobile Menu Items */}
-                  <nav className=" flex pt-6">
-                    <Menu className="ml-4 text-[#626262] flex-col font-medium space-y-2">
+                  <nav className=" flex ">
+                    <Menu className="ml-4 text-[#626262] flex-col font-medium ">
                       {navItems.map((item) => (
                         <NavItem key={item.key} item={item} isMobile={true} />
                       ))}
