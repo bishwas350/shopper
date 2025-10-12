@@ -6,14 +6,13 @@ import Item from "./Item";
 
 const NewCollection = () => {
   return (
-    <div>
+    <section className="w-full py-8 md:py-12 mb-8 md:mb-12 relative z-20">
       <Container>
-        <Flex>
-         <div className="flex-col justify-center items-center h-auto md:h-[90vh] mt-8 md:mt-14 px-4 md:px-0">
-             <div className="new-collections justify-center flex flex-col items-center gap-2">
+        <div className="flex flex-col justify-center items-center min-h-auto px-4 md:px-0">
+          <div className="new-collections justify-center flex flex-col items-center gap-2 w-full">
             <h1 className="text-[#171717] text-2xl sm:text-3xl md:text-5xl font-semibold text-center">NEW COLLECTION</h1>
             <hr className="w-[120px] sm:w-[160px] md:w-[200px] h-1.5 rounded-[10px] bg-[#252525]"/>
-            <div className="collections mt-6 md:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-[20px] justify-items-center">
+            <div className="collections mt-6 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-[20px] justify-items-center w-full">
               {new_collections.map((item, i) => {
                 return (
                   <Item
@@ -28,10 +27,9 @@ const NewCollection = () => {
               })}
             </div>
           </div>
-         </div>
-        </Flex>
+        </div>
       </Container>
-    </div>
+    </section>
   );
 };
 

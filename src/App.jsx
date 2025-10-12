@@ -9,6 +9,7 @@ import ShopCatagory from "./pages/ShopCatagory";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import LoginSinup from "./pages/LoginSinup";
+import Footer from "./components/Footer";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<LoginSinup />} />
           </Routes>
+          <Footer/>
         </BrowserRouter>
       </div>
     </>
