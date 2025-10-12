@@ -9,15 +9,15 @@ const Item = (props) => {
         <Flex>
             <div className="item hover:scale-105 hover:transition-[0.6s]">
                 <img src={props.image} alt="" />
-                <p className='m-1.5'>{props.name}</p>
-            </div>
-            <div className="item-prices flex gap-3">
+                <p className='m-1.5 '>{props.name}</p>
+            <div className="item-prices flex gap-3 ml-1.5">
                 <div className="item-price-new text-[#374151] text-xl font-semibold">
-                    {props.newPrice}
+                    ${props.new_Price}
                 </div>
                 <div className="item-old-price text-[#8c8c8c] text-xl font-medium line-through">
-                    {props.oldPrice}
+                    ${props.old_Price}
                 </div>
+            </div>
             </div>
         </Flex>
       </Container>
