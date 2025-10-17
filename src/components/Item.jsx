@@ -1,28 +1,31 @@
-import React from 'react'
-import Container from './Container'
-import Flex from './Flex'
+import React from "react";
+import Container from "./Container";
+import Flex from "./Flex";
+import { Link } from "react-router-dom";
 
 const Item = (props) => {
   return (
     <div>
       <Container>
         <Flex>
-            <div className="item hover:scale-105 hover:transition-[0.6s]">
-                <img src={props.image} alt="" />
-                <p className='m-1.5 '>{props.name}</p>
+          <div className="item hover:scale-105 hover:transition-[0.6s]">
+            <Link to={`/product/${props.id}`}>
+              <img src={props.image} alt="" />
+              <p className="m-1.5 ">{props.name}</p>
+            </Link>
             <div className="item-prices flex gap-3 ml-1.5">
-                <div className="item-price-new text-[#374151] text-xl font-semibold">
-                    ${props.new_Price}
-                </div>
-                <div className="item-old-price text-[#8c8c8c] text-xl font-medium line-through">
-                    ${props.old_Price}
-                </div>
+              <div className="item-price-new text-[#374151] text-xl font-semibold">
+                ${props.new_Price}
+              </div>
+              <div className="item-old-price text-[#8c8c8c] text-xl font-medium line-through">
+                ${props.old_Price}
+              </div>
             </div>
-            </div>
+          </div>
         </Flex>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default Item
+export default Item;
