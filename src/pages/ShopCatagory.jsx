@@ -13,10 +13,15 @@ const ShopCatagory = (props) => {
     <div>
       <Container>
         <div className="shop-catagory">
-          <img className="w-full h-auto object-cover" src={props.banner} alt="" />
+          <img
+            className="w-full h-auto object-cover"
+            src={props.banner}
+            alt=""
+          />
           <div className="shop-catagory-indexShort flex flex-col gap-3 sm:flex-row items-start sm:items-center justify-between mx-4 md:mx-20 lg:mx-[170px] mt-4">
             <p>
-              <span className="font-semibold">Showing 1-12</span> out of 36 products
+              <span className="font-semibold">Showing 1-12</span> out of 36
+              products
             </p>
             <div className="shopcatagory-sort rounded-full border border-gray-400 flex items-center gap-2 px-3 py-2 text-sm sm:text-base cursor-pointer select-none">
               sort by <img src={dropdown_icon} alt="" />

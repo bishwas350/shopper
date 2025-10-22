@@ -1,4 +1,4 @@
-import { MoveRight } from 'lucide-react';
+import { ChevronRight, MoveRight } from 'lucide-react';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
@@ -8,17 +8,17 @@ const Breadcrumb = ({ product }) => {
 
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex items-center gap-2 text-sm">
+      <ol className="flex items-center gap-2 text-sm m-[60px, 170px] capitalize text-[#5e5e5e]">
         <li>
           <Link to="/">Home</Link>
         </li>
-        <MoveRight className="h-4 w-4" />
+        <ChevronRight className="h-4 w-4" />
         <li>
           <Link to="/">Shop</Link>
         </li>
         {categoryPath && (
           <>
-            <MoveRight className="h-4 w-4" />
+            <ChevronRight  className="h-4 w-4" />
             <li>
               <Link to={`/${categoryPath}`}>{category}</Link>
             </li>
@@ -26,7 +26,7 @@ const Breadcrumb = ({ product }) => {
         )}
         {product?.name && (
           <>
-            <MoveRight className="h-4 w-4" />
+          <ChevronRight  className="h-4 w-4" />
             <li>{product.name}</li>
           </>
         )}
