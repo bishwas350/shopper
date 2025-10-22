@@ -15,7 +15,7 @@ const Product = () => {
   return (
     <div>
       <Container>
-        <div className="">
+        <div className="mt-5">
           <Breadcrumb product={product} />
           <ProductDisplay product={product} />
         </div>
